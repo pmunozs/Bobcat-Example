@@ -1,0 +1,12 @@
+[0403/181014.737:ERROR:process_info.cc(343)] VirtualQueryEx: Acceso denegado. (0x5)
+[0403/181014.737:ERROR:process_info.cc(564)] ReadMemoryInfo failed
+[0403/181014.741:ERROR:process_reader_win.cc(142)] SuspendThread: Acceso denegado. (0x5)
+[0403/181014.741:ERROR:exception_snapshot_win.cc(87)] thread ID 7372 not found in process
+[0403/181014.741:WARNING:crash_report_exception_handler.cc(60)] ProcessSnapshotWin::Initialize failed
+[0403/181014.741:ERROR:scoped_process_suspend.cc(38)] NtResumeProcess: Se intentó obtener acceso a un proceso que está cerrándose.  (0xc000010a)
+[0425/172210.321:ERROR:process_info.cc(625)] range at 0xf3b734fe00000000, size 0x18c fully unreadable
+[0425/172210.321:ERROR:process_info.cc(625)] range at 0xf3b7351e00000000, size 0x18c fully unreadable
+[0425/172210.321:ERROR:process_info.cc(625)] range at 0x0, size 0x18c fully unreadable
+[0425/172534.678:ERROR:process_info.cc(625)] range at 0x3bb350400000000, size 0x2d6 fully unreadable
+[0425/172534.679:ERROR:process_info.cc(625)] range at 0x3bb352400000000, size 0x2d6 fully unreadable
+[0425/172534.679:ERROR:process_info.cc(625)] range at 0x0, size 0x2d6 fully unreadable

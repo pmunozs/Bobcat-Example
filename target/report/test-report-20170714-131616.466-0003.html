@@ -1,0 +1,2330 @@
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+    <title>Bobcat Test Results</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 60px;
+        }
+
+        td {
+            padding: 4px;
+        }
+
+        .navbar .navbar-nav .nav-item-danger > a {
+            background-color: #D9534F;
+            color: white;
+        }
+
+        .navbar .navbar-nav .nav-item-success > a {
+            background-color: #5CB85C;
+            color: white;
+        }
+
+        .navbar .navbar-nav .nav-item-info > a {
+            background-color: #2A6496;
+            color: white;
+        }
+
+        #flash-message-container {
+            position: fixed;
+            top: 0px;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        .panel-success table {
+            background-color: #dff0d8;
+        }
+
+        .panel-danger table {
+            background-color: #f2dede;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript">
+
+        var reportSorter = (function ($, document) {
+            "use strict";
+
+            var api = {},
+
+                    selectors = {
+                        container: '.test-results',
+                        panel: 'div.panel',
+                        panelHeading: '.panel-heading',
+                        panelHeadingTitle: '.panel-title > a'
+                    },
+
+                    statusValueAdapter = function (status) {
+                        if (status === 'success') {
+                            return 0;
+                        } else if (status === 'warning') {
+                            return 1;
+                        } else {
+                            return 2;
+                        }
+                    },
+
+                    getStatus = function (elem) {
+                        return $(elem).data('status');
+                    },
+
+                    getName = function (elem) {
+                        return $(elem).children(selectors.panelHeading).find(selectors.panelHeadingTitle).text().trim();
+                    },
+
+                    comparators = {
+                        nameComparator: function (a, b) {
+                            if (a === b) {
+                                return 0;
+                            }
+                            return a > b ? 1 : -1;
+                        },
+
+                        statusComparator: function (a, b) {
+                            var aStatusValue = statusValueAdapter(a),
+                                    bStatusValue = statusValueAdapter(b);
+
+                            if (aStatusValue === bStatusValue) {
+                                return 0;
+                            }
+                            return aStatusValue > bStatusValue ? -1 : 1;
+                        },
+
+                        statusNameComparator: function (a, b) {
+                            var aStatus = getStatus(a),
+                                    bStatus = getStatus(b),
+                                    aName = getName(a),
+                                    bName = getName(b);
+
+                            var result = comparators.statusComparator(aStatus, bStatus);
+                            if (result === 0) {
+                                result = comparators.nameComparator(aName, bName);
+                            }
+                            return result;
+                        }
+                    };
+
+            api.sort = function () {
+                var $container = $(selectors.container);
+
+                $container.each(function () {
+                    var $panels = $(this).children(selectors.panel);
+
+                    $panels.sort(comparators.statusNameComparator);
+                    $panels.each(function () {
+                        var $subPanels = $(this).find(selectors.panel);
+                        $subPanels.sort(comparators.statusNameComparator);
+                        $(this).find('.panel-body:first').append($subPanels.detach());
+                    });
+
+                    $(this).append($panels.detach());
+                });
+            };
+
+            return api;
+
+        })($, document);
+
+        var buttonGroupToggle = (function ($, document, config) {
+            "use strict";
+
+            var selectors = {
+                btnGroup: '.btn-group',
+                btn: 'button'
+            };
+
+            $(document).ready(function () {
+                var $elements = $(selectors.btnGroup);
+
+                $elements.children(selectors.btn).click(function () {
+                    var $elem = $(this),
+                            $parent = $elem.parent();
+                    $parent.children(selectors.btn).removeClass(config.activeClass).addClass(config.disabledClass);
+                    $elem.removeClass(config.disabledClass).addClass(config.activeClass);
+                });
+            });
+        })($, document, {
+            activeClass: 'btn-primary',
+            disabledClass: 'btn-default'
+        });
+
+        var toggleVisibility = (function ($, document, config) {
+            "use strict";
+
+            var selectors = {
+                btn: '.toggle-visibility-button'
+            };
+
+            $(document).ready(function () {
+                var $elements = $(selectors.btn);
+
+                $elements.click(function () {
+                    var $elem = $(this),
+                            $target = $($elem.data('target'));
+
+                    $target.each(function () {
+                        var $elem = $(this);
+                        if ($elem.hasClass(config.toggleClass)) {
+                            $elem.removeClass(config.toggleClass);
+                        } else {
+                            $elem.addClass(config.toggleClass);
+                        }
+                    });
+                });
+            });
+        })($, document, {
+            toggleClass: 'hide'
+        });
+
+        var reportEventHandler = (function ($, document) {
+            "use strict";
+
+            var api = {},
+
+                    ui = {},
+
+                    selectors = {
+                        reportRow: ".report-row",
+                        toggleAllBtn: ".toggle-all-btn",
+                        toggleAllErrorsBtn: ".toggle-all-errors-btn",
+                        baseReportRowCollapsible: '#container > div > section > div.test-results > div.report-row > .collapse',
+                        baseReportRowCollapsibleError: '.panel-danger > .collapse',
+                        navbar: '.navbar',
+                        testSection: '.test-section'
+                    },
+
+                    $selectedReportRow = null,
+
+                    isExpandedAll = false,
+
+                    isExpandedErrors = false,
+
+                    registerUi = function () {
+                        ui.$reportRow = $(selectors.reportRow);
+                        ui.$toogleAllBtn = $(selectors.toggleAllBtn);
+                        ui.$toogleErrorsBtn = $(selectors.toggleAllErrorsBtn);
+                        ui.$baseReportRowCollapsible = $(selectors.baseReportRowCollapsible);
+                        ui.$baseReportRowCollapsibleError = $(selectors.baseReportRowCollapsibleError);
+                        ui.$navbar = $(selectors.navbar);
+                    },
+
+                    registerEvents = function () {
+                        ui.$reportRow.click(function (event) {
+                            var $elem = $(this);
+                            if (event.shiftKey) {
+                                api.recursiveReportRowToggle($elem);
+                            } else if (event.which === 2 || (event.which === 1 && event.ctrlKey)) {
+                                api.openReportRowSourcePage($elem);
+                            }
+                            $selectedReportRow = $(event.currentTarget);
+                        });
+
+                        ui.$toogleAllBtn.click(function (event) {
+                            api.toggleAllTests();
+                        });
+
+                        ui.$toogleErrorsBtn.click(function (event) {
+                            api.toggleErrorTests();
+                        });
+
+                    },
+
+                    registerKeyEvents = function () {
+                        $(document.body).keyup(function (event) {
+                            if (event.which === 81) { //q key
+                                api.toggleAllTests();
+                            } else if (event.which === 69) {// e key
+                                api.toggleErrorTests();
+                            } else if (event.which === 221) {// ] key
+                                api.scrollToNextTest();
+                            } else if (event.which === 219) {// [ key
+                                api.scrollToPrevTest();
+                            }
+                        });
+                    };
+
+            api.scrollToNextTest = function () {
+                var $nextItem;
+                if ($selectedReportRow === null) {
+                    $selectedReportRow = $(selectors.reportRow).first();
+                }
+                $nextItem = $selectedReportRow.next();
+                $(window).scrollTop($nextItem.offset().top - ui.$navbar.height() - 10);
+                $selectedReportRow = $nextItem;
+            };
+
+            api.scrollToPrevTest = function () {
+                var $prevItem;
+                if ($selectedReportRow === null) {
+                    $selectedReportRow = $(selectors.reportRow).first();
+                }
+                $prevItem = $selectedReportRow.prev();
+                $(window).scrollTop($prevItem.offset().top - ui.$navbar.height() - 10);
+                $selectedReportRow = $prevItem;
+            };
+
+            api.toggleAllTests = function () {
+                var $elems = ui.$baseReportRowCollapsible;
+                if (isExpandedAll) {
+                    api.collapseTests($elems);
+                } else {
+                    api.expandTests($elems);
+                }
+                isExpandedAll = !isExpandedAll;
+                isExpandedErrors = isExpandedAll;
+            };
+
+            api.toggleErrorTests = function () {
+                var $elems = ui.$baseReportRowCollapsibleError;
+                if (isExpandedErrors) {
+                    api.collapseTests($elems);
+                } else {
+                    api.expandTests($elems);
+                }
+                isExpandedErrors = !isExpandedErrors;
+            };
+
+            api.expandTests = function ($elem) {
+                $elem.collapse('show');
+            };
+
+            api.collapseTests = function ($elem) {
+                $elem.collapse('hide');
+            };
+
+            api.recursiveReportRowToggle = function ($elem) {
+                var $collapsible = $elem.children('.collapse'),
+                        $collapsibleChildren = $collapsible.find('.collapse');
+                if ($collapsible.hasClass('in')) {
+                    api.collapseTests($collapsibleChildren)
+                } else {
+                    api.expandTests($collapsibleChildren)
+                }
+            };
+
+            api.openReportRowSourcePage = function ($elem) {
+                window.open($elem.find('a:first').data('source'));
+                event.preventDefault();
+                event.stopPropagation();
+            }
+
+            $(document).ready(function () {
+                registerUi();
+                registerEvents();
+                registerKeyEvents();
+            });
+
+            return api;
+        })($, document);
+
+        $(document).ready(function () {
+            reportSorter.sort();
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+    </script>
+</head>
+<body>
+<div role="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a href="#" class="navbar-brand hidden-xs">Bobcat Tests Report
+                <span>2017-07-14 13.18.56</span></a>
+        </div>
+        <div class="collapse navbar-collapse navbar-right">
+            <ul class="nav navbar-nav">
+                <li data-original-title="Failed: 0 / 5" class="nav-item-danger" data-toggle="tooltip"
+                    data-placement="bottom" title="">
+                    <a href="#">
+					0%
+                        <i class="glyphicon glyphicon-remove"></i>
+                    </a>
+                </li>
+                <li data-original-title="Passed: 5 / 5" class="nav-item-success" data-toggle="tooltip"
+                    data-placement="bottom" title="">
+                    <a href="#">
+					100%
+                        <i class="glyphicon glyphicon-ok"></i>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="glyphicon glyphicon glyphicon-cog"></i>
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li>
+                            <a href="#" class="toggle-all-btn">
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                Toggle All
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="toggle-all-errors-btn">
+                                <i class="glyphicon glyphicon-chevron-down"></i>
+                                Toggle Errors
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#help" data-target="#help" data-toggle="modal" class="nav-item-info">
+                                <i class="glyphicon glyphicon glyphicon-info-sign"></i>
+                                Help
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div id="container">
+    <div class="col-md-12">
+        <section class="test-section">
+            <h1>Environment</h1>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="collapsed" data-toggle="collapse" href="#properties">
+                            <span class="glyphicon glyphicon-chevron-down"></span>
+                        Properties
+                        </a>
+                    </h4>
+                </div>
+                <div id="properties" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <table border="1">
+                                <tr><td>publish.url</td><td>localhost:4503</td></tr>
+                                <tr><td>author.login</td><td>admin</td></tr>
+                                <tr><td>proxy.ip</td><td>127.0.0.1</td></tr>
+                                <tr><td>author.ip</td><td>http://localhost:4502</td></tr>
+                                <tr><td>publish.login</td><td>admin</td></tr>
+                                <tr><td>publish.ip</td><td>127.0.0.1:4503</td></tr>
+                                <tr><td>publish.password</td><td>admin</td></tr>
+                                <tr><td>analytics.uri.prefix</td><td>/b/ss</td></tr>
+                                <tr><td>webdriver.maximize</td><td>true</td></tr>
+                                <tr><td>thread.count</td><td>3</td></tr>
+                                <tr><td>webdriver.reusable</td><td>false</td></tr>
+                                <tr><td>timeouts.minimal</td><td>1</td></tr>
+                                <tr><td>proxy.enabled</td><td>false</td></tr>
+                                <tr><td>component.locator.format</td><td>div.%s</td></tr>
+                                <tr><td>webdriver.type</td><td>chrome</td></tr>
+                                <tr><td>timeouts.big</td><td>30</td></tr>
+                                <tr><td>bobcat.report.path</td><td>./target/report</td></tr>
+                                <tr><td>proxy.port</td><td>9000</td></tr>
+                                <tr><td>parsys.finder.offset</td><td>6</td></tr>
+                                <tr><td>webdriver.chrome.driver</td><td>C:/Users/Pablo/workspace/conexio-automation/chromedriver.exe</td></tr>
+                                <tr><td>analytics.call.timeout.ms</td><td>30000</td></tr>
+                                <tr><td>author.url</td><td>http://localhost:4502</td></tr>
+                                <tr><td>webdriver.defaultTimeout</td><td>10</td></tr>
+                                <tr><td>timeouts.medium</td><td>15</td></tr>
+                                <tr><td>bobcat.report.reporters</td><td>html,json,simple,stdout</td></tr>
+                                <tr><td>page.title.timeout</td><td>30</td></tr>
+                                <tr><td>timeouts.small</td><td>5</td></tr>
+                                <tr><td>parsys.locator.format</td><td>div.parsys.%s</td></tr>
+                                <tr><td>author.password</td><td>admin</td></tr>
+                                <tr><td>webdriver.mobile</td><td>false</td></tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <h2>
+                Test results
+            </h2>
+            <div class="test-results" data-test-name="Test results">
+                    <div class="panel report-row panel-success" data-status="success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#tests-accordion"
+                               href="#test-0">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+							TextComponentTest - verifyRichTextFieldWorks
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="test-0" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table border=1>
+                                <tr class="EventEntry">
+
+                                            <td>1.679</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/libs/granite/core/content/login.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>3.917</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/siteadmin#/content/conexio-internal-project/en/</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>36</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>25</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: td.x-toolbar-left</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.032</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.ext-el-mask-msg.x-mask-loading</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>82</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>81</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: div.x-grid3-row</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>58</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; id: cq-siteadmin-grid]] -&gt; css selector: div.x-grid3-row] -&gt; By.cssSelector: div.x-grid3-col-title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>2.954</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>125</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>35</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.text</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>34</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.text] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>32</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.text] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>130</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>33</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-html-editor-wrap table.x-btn-pressed button</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>38</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-html-editor-tb button.x-edit-bold</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>202</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; css selector: div.x-html-editor-tb button.x-edit-bold]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-html-editor-wrap table.x-btn-pressed button</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>61</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-html-editor-tb button.x-edit-italic</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>282</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; css selector: div.x-html-editor-tb button.x-edit-italic]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-html-editor-wrap table.x-btn-pressed button</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>55</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-html-editor-tb button.x-edit-underline</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>244</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; css selector: div.x-html-editor-tb button.x-edit-underline]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>31</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>426</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -&gt; xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>41</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>9</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>7</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>15</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>358</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>12</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>5</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>6</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>5</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>57</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>122</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>59</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>8</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>6</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>6</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>7</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>103</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>13</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>7</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>5</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>6</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>15</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.031</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>23</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//body</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>8</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//body</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>15</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//body</td>
+
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    <div class="panel report-row panel-success" data-status="success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#tests-accordion"
+                               href="#test-1">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+							TitleComponentTest - verifiesDefaultTitleValue
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="test-1" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table border=1>
+                                <tr class="EventEntry">
+
+                                            <td>1.646</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/libs/granite/core/content/login.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>3.409</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/siteadmin#/content/conexio-internal-project/en/</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>56</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>67</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: td.x-toolbar-left</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.024</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.ext-el-mask-msg.x-mask-loading</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>44</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>38</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: div.x-grid3-row</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>41</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -&gt; id: cq-siteadmin-grid]] -&gt; css selector: div.x-grid3-row] -&gt; By.cssSelector: div.x-grid3-col-title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.281</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>164</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>10.038</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.section:not(.new)</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>41</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>33</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.title] -&gt; By.xpath: //div[contains(@class, 'title')]/*</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>76</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//*</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//*</td>
+
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    <div class="panel report-row panel-success" data-status="success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#tests-accordion"
+                               href="#test-2">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+							ImageComponentTest - insertImage
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="test-2" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table border=1>
+                                <tr class="EventEntry">
+
+                                            <td>1.589</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/libs/granite/core/content/login.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>3.356</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/siteadmin#/content/conexio-internal-project/en/</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>94</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>83</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: td.x-toolbar-left</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.039</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.ext-el-mask-msg.x-mask-loading</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>39</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>53</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: div.x-grid3-row</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>32</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; id: cq-siteadmin-grid]] -&gt; css selector: div.x-grid3-row] -&gt; By.cssSelector: div.x-grid3-col-title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.300</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>50</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>10.021</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.section:not(.new)</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>40</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.image</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>654</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>92</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: #cq-cf-tabpanel ul</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>60</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel ul] -&gt; By.xpath: ./li[contains(@id,'Images')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>243</td>
+                                            <td>click</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel ul]] -&gt; xpath: ./li[contains(@id,'Images')]]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>49</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-cf-west-xsplit</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>45</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-cf-west-xsplit</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>47</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>17</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>61</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-list] -&gt; By.xpath: ./ancestor::table[1]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>102</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-mosaic</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>29</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-mosaic</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>56</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-mosaic] -&gt; By.xpath: ./ancestor::table[1]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-list] -&gt; By.xpath: ./ancestor::table[1]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>17</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-mosaic</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-mosaic</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-mosaic] -&gt; By.xpath: ./ancestor::table[1]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>41</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>405</td>
+                                            <td>click</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-list]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>51</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-list] -&gt; By.xpath: ./../../../../..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>45</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>44</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview] -&gt; By.xpath: .//div[contains(@class,'cq-cft-search-title')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>49</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'image')]/*</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.016</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; xpath: //div[contains(@class, 'image')]/*] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.055</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; xpath: //div[contains(@class, 'image')]/*] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>511</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>210</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-cf-west-xsplit</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>85</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>164</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-cf-west-xsplit</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>43</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>61</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>59</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview-list</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>62</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview-list] -&gt; By.xpath: ./ancestor::table[1]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div] -&gt; By.className: cq-cft-dataview</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>69</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; css selector: #cq-cf-tabpanel div.x-tab-panel-body &gt; div]] -&gt; class name: cq-cft-dataview] -&gt; By.xpath: .//div[contains(@class,'cq-cft-search-title') and text()='anag.jpg']/../..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>89</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>163</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -&gt; xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>59</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>8</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>17</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>29</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>8</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>7</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>33</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>15</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>9</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>7</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>12</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>11</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>5</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>6</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>16</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>22</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>12</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>5</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>11</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>5</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>11</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    <div class="panel report-row panel-success" data-status="success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#tests-accordion"
+                               href="#test-3">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+							TitleComponentTest - verifiesHeadingFieldSetsProperly
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="test-3" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table border=1>
+                                <tr class="EventEntry">
+
+                                            <td>1.432</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/libs/granite/core/content/login.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>3.017</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/siteadmin#/content/conexio-internal-project/en/</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>31</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>31</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: td.x-toolbar-left</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.054</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.ext-el-mask-msg.x-mask-loading</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>40</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>49</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: div.x-grid3-row</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>51</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; id: cq-siteadmin-grid]] -&gt; css selector: div.x-grid3-row] -&gt; By.cssSelector: div.x-grid3-col-title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.496</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>25</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>10.011</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.section:not(.new)</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>27</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.title] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>36</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.title] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>92</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>32</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-combo-list[style*='visible'] &gt; div &gt; div.x-combo-list-item</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H3']</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>114</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H3']]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>118</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>8</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>12</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>17</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>43</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>42</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>23</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>22</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>22</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.063</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>35</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>29</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.title] -&gt; By.xpath: //div[contains(@class, 'title')]/*</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>74</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//*</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: .//*</td>
+
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                    <div class="panel report-row panel-success" data-status="success">
+                    <div class="panel-heading">
+                        <h4 class="panel-title">
+                            <a class="collapsed" data-toggle="collapse" data-parent="#tests-accordion"
+                               href="#test-4">
+                                <span class="glyphicon glyphicon-chevron-down"></span>
+							TitleComponentTest - verifiesHeadingStyles
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="test-4" class="panel-collapse collapse">
+                        <div class="panel-body">
+                            <table border=1>
+                                <tr class="EventEntry">
+
+                                            <td>749</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/libs/granite/core/content/login.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.004</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/siteadmin#/content/conexio-internal-project/en/</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>51</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>47</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: td.x-toolbar-left</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>1.032</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.ext-el-mask-msg.x-mask-loading</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>47</td>
+                                            <td>findBy</td>
+                                            <td>By.id: cq-siteadmin-grid</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>28</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; id: cq-siteadmin-grid] -&gt; By.cssSelector: div.x-grid3-row</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; id: cq-siteadmin-grid]] -&gt; css selector: div.x-grid3-row] -&gt; By.cssSelector: div.x-grid3-col-title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>938</td>
+                                            <td>navigateTo</td>
+                                            <td>http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>51</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>10.062</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.section:not(.new)</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>38</td>
+                                            <td>findBy</td>
+                                            <td>[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -&gt; By.cssSelector: div.title</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>27</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.title] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>34</td>
+                                            <td>findBy</td>
+                                            <td>[[[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -&gt; css selector: div.title] -&gt; By.cssSelector: [id*=cq-gen]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>108</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>24</td>
+                                            <td>findBy</td>
+                                            <td>By.cssSelector: div.x-combo-list[style*='visible'] &gt; div &gt; div.x-combo-list-item</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H1']</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>100</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H1']]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>25</td>
+                                            <td>findBy</td>
+                                            <td>By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>108</td>
+                                            <td>click</td>
+                                            <td>[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -&gt; xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>29</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>17</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>19</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>17</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>18</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>21</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                                <tr class="EventEntry">
+
+                                            <td>20</td>
+                                            <td>executeJs</td>
+                                            <td>return $CQ.active == 0</td>
+
+                                    </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+                <hr>
+        </section>
+    </div>
+</div>
+<div class="modal fade" id="help" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                <h4 class="modal-title" id="myModalLabel">Help</h4>
+            </div>
+            <div class="modal-body">
+                <p>Hotkeys:</p>
+                <span class="label label-default">shift + click</span> on item to expand/collapse it with all subitems
+                <br>
+                <span class="label label-default">ctrl + click</span> or <span class="label label-default">middle mouse click</span>
+                on item to open url in new page<br>
+                press <span class="label label-default">q</span> to expand/collapse all items <br>
+                press <span class="label label-default">e</span> to expand/collapse all <span
+                    class="label label-danger">ERROR</span> items <br>
+                use <span class="label label-default">[ , ]</span> to navigate between issues
+            </div>
+        </div>
+    </div>
+</div>
+<footer>
+    <div class="col-md-12">
+        <span class="muted pull-right">All content © 2014 Cognifide. All rights reserved.</span>
+    </div>
+</footer>
+
+</body>
+</html>

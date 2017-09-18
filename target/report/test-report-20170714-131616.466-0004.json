@@ -1,0 +1,1969 @@
+{
+  "properties": [
+    {
+      "key": "publish.url",
+      "value": "localhost:4503"
+    },
+    {
+      "key": "author.login",
+      "value": "admin"
+    },
+    {
+      "key": "proxy.ip",
+      "value": "127.0.0.1"
+    },
+    {
+      "key": "author.ip",
+      "value": "http://localhost:4502"
+    },
+    {
+      "key": "publish.login",
+      "value": "admin"
+    },
+    {
+      "key": "publish.ip",
+      "value": "127.0.0.1:4503"
+    },
+    {
+      "key": "publish.password",
+      "value": "admin"
+    },
+    {
+      "key": "analytics.uri.prefix",
+      "value": "/b/ss"
+    },
+    {
+      "key": "webdriver.maximize",
+      "value": "true"
+    },
+    {
+      "key": "thread.count",
+      "value": "3"
+    },
+    {
+      "key": "webdriver.reusable",
+      "value": "false"
+    },
+    {
+      "key": "timeouts.minimal",
+      "value": "1"
+    },
+    {
+      "key": "proxy.enabled",
+      "value": "false"
+    },
+    {
+      "key": "component.locator.format",
+      "value": "div.%s"
+    },
+    {
+      "key": "webdriver.type",
+      "value": "chrome"
+    },
+    {
+      "key": "timeouts.big",
+      "value": "30"
+    },
+    {
+      "key": "bobcat.report.path",
+      "value": "./target/report"
+    },
+    {
+      "key": "proxy.port",
+      "value": "9000"
+    },
+    {
+      "key": "parsys.finder.offset",
+      "value": "6"
+    },
+    {
+      "key": "webdriver.chrome.driver",
+      "value": "C:/Users/Pablo/workspace/conexio-automation/chromedriver.exe"
+    },
+    {
+      "key": "analytics.call.timeout.ms",
+      "value": "30000"
+    },
+    {
+      "key": "author.url",
+      "value": "http://localhost:4502"
+    },
+    {
+      "key": "webdriver.defaultTimeout",
+      "value": "10"
+    },
+    {
+      "key": "timeouts.medium",
+      "value": "15"
+    },
+    {
+      "key": "bobcat.report.reporters",
+      "value": "html,json,simple,stdout"
+    },
+    {
+      "key": "page.title.timeout",
+      "value": "30"
+    },
+    {
+      "key": "timeouts.small",
+      "value": "5"
+    },
+    {
+      "key": "parsys.locator.format",
+      "value": "div.parsys.%s"
+    },
+    {
+      "key": "author.password",
+      "value": "admin"
+    },
+    {
+      "key": "webdriver.mobile",
+      "value": "false"
+    }
+  ],
+  "tests": [
+    {
+      "name": "TextComponentTest - verifyRichTextFieldWorks",
+      "result": "OK",
+      "entries": [
+        {
+          "time": "Fri Jul 14 13:16:22 UYT 2017",
+          "type": "browserInfo",
+          "capabilities": {
+            "browserName": "chrome",
+            "version": "59.0.3071.115"
+          }
+        },
+        {
+          "time": "Fri Jul 14 13:16:23 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/libs/granite/core/content/login.html",
+          "duration": 1679
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/siteadmin#/content/conexio-internal-project/en/",
+          "duration": 3917
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 36
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 25
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.ext-el-mask-msg.x-mask-loading",
+          "duration": 1032
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 82
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row",
+          "duration": 81
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> id: cq-siteadmin-grid]] -> css selector: div.x-grid3-row] -> By.cssSelector: div.x-grid3-col-title",
+          "duration": 58
+        },
+        {
+          "time": "Fri Jul 14 13:16:33 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html",
+          "duration": 2954
+        },
+        {
+          "time": "Fri Jul 14 13:16:45 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..",
+          "duration": 125
+        },
+        {
+          "time": "Fri Jul 14 13:16:45 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.text",
+          "duration": 35
+        },
+        {
+          "time": "Fri Jul 14 13:16:45 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.text] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 34
+        },
+        {
+          "time": "Fri Jul 14 13:16:46 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.text] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 32
+        },
+        {
+          "time": "Fri Jul 14 13:16:47 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]",
+          "duration": 130
+        },
+        {
+          "time": "Fri Jul 14 13:17:02 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-html-editor-wrap table.x-btn-pressed button",
+          "duration": 33
+        },
+        {
+          "time": "Fri Jul 14 13:17:02 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-html-editor-tb button.x-edit-bold",
+          "duration": 38
+        },
+        {
+          "time": "Fri Jul 14 13:17:03 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> css selector: div.x-html-editor-tb button.x-edit-bold]",
+          "duration": 202
+        },
+        {
+          "time": "Fri Jul 14 13:17:03 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-html-editor-wrap table.x-btn-pressed button",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:04 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-html-editor-tb button.x-edit-italic",
+          "duration": 61
+        },
+        {
+          "time": "Fri Jul 14 13:17:04 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> css selector: div.x-html-editor-tb button.x-edit-italic]",
+          "duration": 282
+        },
+        {
+          "time": "Fri Jul 14 13:17:05 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-html-editor-wrap table.x-btn-pressed button",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:06 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-html-editor-tb button.x-edit-underline",
+          "duration": 55
+        },
+        {
+          "time": "Fri Jul 14 13:17:06 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> css selector: div.x-html-editor-tb button.x-edit-underline]",
+          "duration": 244
+        },
+        {
+          "time": "Fri Jul 14 13:17:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']",
+          "duration": 31
+        },
+        {
+          "time": "Fri Jul 14 13:17:07 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (da7ab1cf8af3f7cebd52bda0277ce611)] -> xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]",
+          "duration": 426
+        },
+        {
+          "time": "Fri Jul 14 13:17:09 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 41
+        },
+        {
+          "time": "Fri Jul 14 13:17:10 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:10 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 9
+        },
+        {
+          "time": "Fri Jul 14 13:17:11 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:11 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 7
+        },
+        {
+          "time": "Fri Jul 14 13:17:12 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 15
+        },
+        {
+          "time": "Fri Jul 14 13:17:13 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 358
+        },
+        {
+          "time": "Fri Jul 14 13:17:13 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:14 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 12
+        },
+        {
+          "time": "Fri Jul 14 13:17:14 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 5
+        },
+        {
+          "time": "Fri Jul 14 13:17:15 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 6
+        },
+        {
+          "time": "Fri Jul 14 13:17:15 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 5
+        },
+        {
+          "time": "Fri Jul 14 13:17:16 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 57
+        },
+        {
+          "time": "Fri Jul 14 13:17:17 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 122
+        },
+        {
+          "time": "Fri Jul 14 13:17:17 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 59
+        },
+        {
+          "time": "Fri Jul 14 13:17:18 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 8
+        },
+        {
+          "time": "Fri Jul 14 13:17:18 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 6
+        },
+        {
+          "time": "Fri Jul 14 13:17:19 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 6
+        },
+        {
+          "time": "Fri Jul 14 13:17:19 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 7
+        },
+        {
+          "time": "Fri Jul 14 13:17:20 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 103
+        },
+        {
+          "time": "Fri Jul 14 13:17:20 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 13
+        },
+        {
+          "time": "Fri Jul 14 13:17:21 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:21 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:22 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:22 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 7
+        },
+        {
+          "time": "Fri Jul 14 13:17:23 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:23 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 5
+        },
+        {
+          "time": "Fri Jul 14 13:17:24 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 6
+        },
+        {
+          "time": "Fri Jul 14 13:17:24 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 15
+        },
+        {
+          "time": "Fri Jul 14 13:17:26 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]",
+          "duration": 1031
+        },
+        {
+          "time": "Fri Jul 14 13:17:26 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//body",
+          "duration": 23
+        },
+        {
+          "time": "Fri Jul 14 13:17:26 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//body",
+          "duration": 8
+        },
+        {
+          "time": "Fri Jul 14 13:17:26 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//body",
+          "duration": 15
+        }
+      ]
+    },
+    {
+      "name": "TitleComponentTest - verifiesDefaultTitleValue",
+      "result": "OK",
+      "entries": [
+        {
+          "time": "Fri Jul 14 13:16:22 UYT 2017",
+          "type": "browserInfo",
+          "capabilities": {
+            "browserName": "chrome",
+            "version": "59.0.3071.115"
+          }
+        },
+        {
+          "time": "Fri Jul 14 13:16:23 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/libs/granite/core/content/login.html",
+          "duration": 1646
+        },
+        {
+          "time": "Fri Jul 14 13:16:27 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/siteadmin#/content/conexio-internal-project/en/",
+          "duration": 3409
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 56
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 67
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.ext-el-mask-msg.x-mask-loading",
+          "duration": 1024
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 44
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row",
+          "duration": 38
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -> id: cq-siteadmin-grid]] -> css selector: div.x-grid3-row] -> By.cssSelector: div.x-grid3-col-title",
+          "duration": 41
+        },
+        {
+          "time": "Fri Jul 14 13:16:30 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html",
+          "duration": 1281
+        },
+        {
+          "time": "Fri Jul 14 13:16:42 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..",
+          "duration": 164
+        },
+        {
+          "time": "Fri Jul 14 13:16:52 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.section:not(.new)",
+          "duration": 10038
+        },
+        {
+          "time": "Fri Jul 14 13:16:52 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.title",
+          "duration": 41
+        },
+        {
+          "time": "Fri Jul 14 13:16:52 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (c4b17705fa5d3c007c2ac20eff910c48)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.title] -> By.xpath: //div[contains(@class, 'title')]/*",
+          "duration": 33
+        },
+        {
+          "time": "Fri Jul 14 13:17:04 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//*",
+          "duration": 76
+        },
+        {
+          "time": "Fri Jul 14 13:17:04 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//*",
+          "duration": 16
+        }
+      ]
+    },
+    {
+      "name": "ImageComponentTest - insertImage",
+      "result": "OK",
+      "entries": [
+        {
+          "time": "Fri Jul 14 13:16:22 UYT 2017",
+          "type": "browserInfo",
+          "capabilities": {
+            "browserName": "chrome",
+            "version": "59.0.3071.115"
+          }
+        },
+        {
+          "time": "Fri Jul 14 13:16:23 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/libs/granite/core/content/login.html",
+          "duration": 1589
+        },
+        {
+          "time": "Fri Jul 14 13:16:27 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/siteadmin#/content/conexio-internal-project/en/",
+          "duration": 3356
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 94
+        },
+        {
+          "time": "Fri Jul 14 13:16:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 83
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.ext-el-mask-msg.x-mask-loading",
+          "duration": 1039
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 39
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row",
+          "duration": 53
+        },
+        {
+          "time": "Fri Jul 14 13:16:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> id: cq-siteadmin-grid]] -> css selector: div.x-grid3-row] -> By.cssSelector: div.x-grid3-col-title",
+          "duration": 32
+        },
+        {
+          "time": "Fri Jul 14 13:16:30 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html",
+          "duration": 1300
+        },
+        {
+          "time": "Fri Jul 14 13:16:42 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..",
+          "duration": 50
+        },
+        {
+          "time": "Fri Jul 14 13:16:52 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.section:not(.new)",
+          "duration": 10021
+        },
+        {
+          "time": "Fri Jul 14 13:16:52 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.image",
+          "duration": 40
+        },
+        {
+          "time": "Fri Jul 14 13:16:53 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html",
+          "duration": 654
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: #cq-cf-tabpanel ul",
+          "duration": 92
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel ul] -> By.xpath: ./li[contains(@id,'Images')]",
+          "duration": 60
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel ul]] -> xpath: ./li[contains(@id,'Images')]]",
+          "duration": 243
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-cf-west-xsplit",
+          "duration": 49
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body > div",
+          "duration": 45
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-cf-west-xsplit",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body > div",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 47
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 17
+        },
+        {
+          "time": "Fri Jul 14 13:17:00 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-list] -> By.xpath: ./ancestor::table[1]",
+          "duration": 61
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-mosaic",
+          "duration": 102
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-mosaic",
+          "duration": 29
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-mosaic] -> By.xpath: ./ancestor::table[1]",
+          "duration": 56
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-list] -> By.xpath: ./ancestor::table[1]",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-mosaic",
+          "duration": 17
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-mosaic",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-mosaic] -> By.xpath: ./ancestor::table[1]",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 41
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-list]",
+          "duration": 405
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-list] -> By.xpath: ./../../../../..",
+          "duration": 51
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview",
+          "duration": 45
+        },
+        {
+          "time": "Fri Jul 14 13:17:01 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview] -> By.xpath: .//div[contains(@class,'cq-cft-search-title')]",
+          "duration": 44
+        },
+        {
+          "time": "Fri Jul 14 13:17:03 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'image')]/*",
+          "duration": 49
+        },
+        {
+          "time": "Fri Jul 14 13:17:04 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> xpath: //div[contains(@class, 'image')]/*] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 1016
+        },
+        {
+          "time": "Fri Jul 14 13:17:06 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> xpath: //div[contains(@class, 'image')]/*] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 1055
+        },
+        {
+          "time": "Fri Jul 14 13:17:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]",
+          "duration": 511
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-cf-west-xsplit",
+          "duration": 210
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body > div",
+          "duration": 85
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-cf-west-xsplit",
+          "duration": 164
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: #cq-cf-tabpanel div.x-tab-panel-body > div",
+          "duration": 43
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 61
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview-list",
+          "duration": 59
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview-list] -> By.xpath: ./ancestor::table[1]",
+          "duration": 62
+        },
+        {
+          "time": "Fri Jul 14 13:17:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div] -> By.className: cq-cft-dataview",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> css selector: #cq-cf-tabpanel div.x-tab-panel-body > div]] -> class name: cq-cft-dataview] -> By.xpath: .//div[contains(@class,'cq-cft-search-title') and text()='anag.jpg']/../..",
+          "duration": 69
+        },
+        {
+          "time": "Fri Jul 14 13:17:14 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']",
+          "duration": 89
+        },
+        {
+          "time": "Fri Jul 14 13:17:14 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (b20e6923694d2fcb07999448f665f25e)] -> xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]",
+          "duration": 163
+        },
+        {
+          "time": "Fri Jul 14 13:17:17 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 59
+        },
+        {
+          "time": "Fri Jul 14 13:17:17 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 8
+        },
+        {
+          "time": "Fri Jul 14 13:17:18 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 17
+        },
+        {
+          "time": "Fri Jul 14 13:17:18 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 29
+        },
+        {
+          "time": "Fri Jul 14 13:17:19 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 8
+        },
+        {
+          "time": "Fri Jul 14 13:17:19 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 7
+        },
+        {
+          "time": "Fri Jul 14 13:17:20 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 33
+        },
+        {
+          "time": "Fri Jul 14 13:17:20 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 15
+        },
+        {
+          "time": "Fri Jul 14 13:17:21 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:21 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:22 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:17:22 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 9
+        },
+        {
+          "time": "Fri Jul 14 13:17:23 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:23 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 7
+        },
+        {
+          "time": "Fri Jul 14 13:17:24 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 12
+        },
+        {
+          "time": "Fri Jul 14 13:17:24 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:25 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 11
+        },
+        {
+          "time": "Fri Jul 14 13:17:25 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:26 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 5
+        },
+        {
+          "time": "Fri Jul 14 13:17:27 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 6
+        },
+        {
+          "time": "Fri Jul 14 13:17:27 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 16
+        },
+        {
+          "time": "Fri Jul 14 13:17:28 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 22
+        },
+        {
+          "time": "Fri Jul 14 13:17:28 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 12
+        },
+        {
+          "time": "Fri Jul 14 13:17:29 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:29 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:30 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 5
+        },
+        {
+          "time": "Fri Jul 14 13:17:30 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 11
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 5
+        },
+        {
+          "time": "Fri Jul 14 13:17:32 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 11
+        }
+      ]
+    },
+    {
+      "name": "TitleComponentTest - verifiesHeadingFieldSetsProperly",
+      "result": "OK",
+      "entries": [
+        {
+          "time": "Fri Jul 14 13:17:04 UYT 2017",
+          "type": "browserInfo",
+          "capabilities": {
+            "browserName": "chrome",
+            "version": "59.0.3071.115"
+          }
+        },
+        {
+          "time": "Fri Jul 14 13:17:05 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/libs/granite/core/content/login.html",
+          "duration": 1432
+        },
+        {
+          "time": "Fri Jul 14 13:17:08 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/siteadmin#/content/conexio-internal-project/en/",
+          "duration": 3017
+        },
+        {
+          "time": "Fri Jul 14 13:17:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 31
+        },
+        {
+          "time": "Fri Jul 14 13:17:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 31
+        },
+        {
+          "time": "Fri Jul 14 13:17:10 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.ext-el-mask-msg.x-mask-loading",
+          "duration": 1054
+        },
+        {
+          "time": "Fri Jul 14 13:17:10 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 40
+        },
+        {
+          "time": "Fri Jul 14 13:17:10 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row",
+          "duration": 49
+        },
+        {
+          "time": "Fri Jul 14 13:17:10 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> id: cq-siteadmin-grid]] -> css selector: div.x-grid3-row] -> By.cssSelector: div.x-grid3-col-title",
+          "duration": 51
+        },
+        {
+          "time": "Fri Jul 14 13:17:12 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html",
+          "duration": 1496
+        },
+        {
+          "time": "Fri Jul 14 13:17:18 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..",
+          "duration": 25
+        },
+        {
+          "time": "Fri Jul 14 13:17:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.section:not(.new)",
+          "duration": 10011
+        },
+        {
+          "time": "Fri Jul 14 13:17:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.title",
+          "duration": 27
+        },
+        {
+          "time": "Fri Jul 14 13:17:28 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.title] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:29 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.title] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 36
+        },
+        {
+          "time": "Fri Jul 14 13:17:30 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]",
+          "duration": 92
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-combo-list[style*='visible'] > div > div.x-combo-list-item",
+          "duration": 32
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H3']",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H3']]",
+          "duration": 114
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:31 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]",
+          "duration": 118
+        },
+        {
+          "time": "Fri Jul 14 13:17:33 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 8
+        },
+        {
+          "time": "Fri Jul 14 13:17:34 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 12
+        },
+        {
+          "time": "Fri Jul 14 13:17:34 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 17
+        },
+        {
+          "time": "Fri Jul 14 13:17:35 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:35 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 43
+        },
+        {
+          "time": "Fri Jul 14 13:17:36 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:36 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:37 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:37 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:38 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:38 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:39 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:17:39 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:40 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:41 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:41 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:17:42 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:42 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:17:43 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:43 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:17:44 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:17:44 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:17:45 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:17:45 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 42
+        },
+        {
+          "time": "Fri Jul 14 13:17:46 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:46 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 23
+        },
+        {
+          "time": "Fri Jul 14 13:17:47 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 22
+        },
+        {
+          "time": "Fri Jul 14 13:17:47 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 22
+        },
+        {
+          "time": "Fri Jul 14 13:17:48 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:17:48 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:17:50 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]",
+          "duration": 1063
+        },
+        {
+          "time": "Fri Jul 14 13:17:50 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.title",
+          "duration": 35
+        },
+        {
+          "time": "Fri Jul 14 13:17:50 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (d012d953c3ec0cf6965a4aeb98f15a26)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.title] -> By.xpath: //div[contains(@class, 'title')]/*",
+          "duration": 29
+        },
+        {
+          "time": "Fri Jul 14 13:17:59 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//*",
+          "duration": 74
+        },
+        {
+          "time": "Fri Jul 14 13:17:59 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: .//*",
+          "duration": 18
+        }
+      ]
+    },
+    {
+      "name": "TitleComponentTest - verifiesHeadingStyles",
+      "result": "OK",
+      "entries": [
+        {
+          "time": "Fri Jul 14 13:17:59 UYT 2017",
+          "type": "browserInfo",
+          "capabilities": {
+            "browserName": "chrome",
+            "version": "59.0.3071.115"
+          }
+        },
+        {
+          "time": "Fri Jul 14 13:18:00 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/libs/granite/core/content/login.html",
+          "duration": 749
+        },
+        {
+          "time": "Fri Jul 14 13:18:01 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/siteadmin#/content/conexio-internal-project/en/",
+          "duration": 1004
+        },
+        {
+          "time": "Fri Jul 14 13:18:02 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 51
+        },
+        {
+          "time": "Fri Jul 14 13:18:02 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 47
+        },
+        {
+          "time": "Fri Jul 14 13:18:03 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.ext-el-mask-msg.x-mask-loading",
+          "duration": 1032
+        },
+        {
+          "time": "Fri Jul 14 13:18:03 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 47
+        },
+        {
+          "time": "Fri Jul 14 13:18:03 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row",
+          "duration": 28
+        },
+        {
+          "time": "Fri Jul 14 13:18:03 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> id: cq-siteadmin-grid]] -> css selector: div.x-grid3-row] -> By.cssSelector: div.x-grid3-col-title",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:18:04 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/cf#/content/conexio-internal-project/en/test-automation-page.html",
+          "duration": 938
+        },
+        {
+          "time": "Fri Jul 14 13:18:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..",
+          "duration": 51
+        },
+        {
+          "time": "Fri Jul 14 13:18:19 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.section:not(.new)",
+          "duration": 10062
+        },
+        {
+          "time": "Fri Jul 14 13:18:19 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..] -> By.cssSelector: div.title",
+          "duration": 38
+        },
+        {
+          "time": "Fri Jul 14 13:18:19 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.title] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 27
+        },
+        {
+          "time": "Fri Jul 14 13:18:20 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> xpath: //div[contains(@class, 'cq-placeholder-par_47_42')]/..]] -> css selector: div.title] -> By.cssSelector: [id*=cq-gen]",
+          "duration": 34
+        },
+        {
+          "time": "Fri Jul 14 13:18:21 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]",
+          "duration": 108
+        },
+        {
+          "time": "Fri Jul 14 13:18:22 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.x-combo-list[style*='visible'] > div > div.x-combo-list-item",
+          "duration": 24
+        },
+        {
+          "time": "Fri Jul 14 13:18:22 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H1']",
+          "duration": 20
+        },
+        {
+          "time": "Fri Jul 14 13:18:22 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> xpath: //div[contains(@class, 'x-combo-list') and contains(@style, 'visible')]/div/div[text()='H1']]",
+          "duration": 100
+        },
+        {
+          "time": "Fri Jul 14 13:18:22 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']",
+          "duration": 25
+        },
+        {
+          "time": "Fri Jul 14 13:18:22 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[ChromeDriver: chrome on XP (dcb78937e9f04c9529ccd67bf6d509a6)] -> xpath: //div[contains(@id, 'ext-comp-') and contains(@style, 'display: block') and contains(@style, 'visibility: visible')]//div[contains(@class, 'x-window-footer')]//button[text()='OK']]",
+          "duration": 108
+        },
+        {
+          "time": "Fri Jul 14 13:18:24 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 29
+        },
+        {
+          "time": "Fri Jul 14 13:18:25 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:25 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:18:26 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 17
+        },
+        {
+          "time": "Fri Jul 14 13:18:26 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:27 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:18:27 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:28 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:28 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:18:29 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:29 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:30 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:30 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:31 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:18:31 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 19
+        },
+        {
+          "time": "Fri Jul 14 13:18:32 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:32 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 17
+        },
+        {
+          "time": "Fri Jul 14 13:18:33 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:33 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:34 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:18:34 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 18
+        },
+        {
+          "time": "Fri Jul 14 13:18:35 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 21
+        },
+        {
+          "time": "Fri Jul 14 13:18:36 UYT 2017",
+          "type": "event",
+          "event": "executeJs",
+          "parameter": "return $CQ.active == 0",
+          "duration": 20
+        }
+      ]
+    }
+  ],
+  "total": 5,
+  "failed": 0
+}

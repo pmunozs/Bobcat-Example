@@ -1,0 +1,8 @@
+com\conexio\automation\BobcatSuite.class
+com\conexio\automation\homepage\ImageComponentTest.class
+com\conexio\automation\homepage\TitleComponentTest.class
+com\conexio\automation\login\AuthorizationTest.class
+com\conexio\automation\summer\SectionHeaderComponentTest.class
+com\conexio\automation\feedback\StartFormComponentTest.class
+com\conexio\automation\homepage\TextComponentTest.class
+com\conexio\automation\summer\ImageComponentTest.class

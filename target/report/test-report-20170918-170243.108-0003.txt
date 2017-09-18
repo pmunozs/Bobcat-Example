@@ -1,0 +1,137 @@
+Properties:
+publish.url: localhost:4503
+author.login: admin
+proxy.ip: 127.0.0.1
+author.ip: http://localhost:4502
+publish.login: admin
+publish.ip: 127.0.0.1:4503
+publish.password: admin
+analytics.uri.prefix: /b/ss
+webdriver.maximize: true
+thread.count: 3
+webdriver.reusable: false
+timeouts.minimal: 1
+proxy.enabled: false
+component.locator.format: div.%s
+webdriver.type: chrome
+timeouts.big: 30
+bobcat.report.path: ./target/report
+proxy.port: 9000
+parsys.finder.offset: 6
+webdriver.chrome.driver: C:/Users/Pablo/workspace/conexio-automation/chromedriver.exe
+analytics.call.timeout.ms: 30000
+webdriver.defaultTimeout: 10
+author.url: http://localhost:4502
+timeouts.medium: 15
+bobcat.report.reporters: html,json,simple,stdout
+page.title.timeout: 30
+parsys.locator.format: div.parsys.%s
+timeouts.small: 5
+author.password: admin
+webdriver.mobile: false
+This is a console test report.
+Test: ImageComponentTest - insertImage
+Result: NOK ()
+[Mon Sep 18 17:02:48 UYT 2017] Browser type: chrome 61.0.3163.91
+[Mon Sep 18 17:02:49 UYT 2017] Event: navigateTo, parameters: http://localhost:4502/libs/granite/core/content/login.html, duration: 1148
+[Mon Sep 18 17:02:54 UYT 2017] Event: navigateTo, parameters: http://localhost:4502/siteadmin#/content/conexio-internal-project/en/, duration: 4297
+[Mon Sep 18 17:02:55 UYT 2017] Event: findBy, parameters: By.id: cq-siteadmin-grid, duration: 33
+[Mon Sep 18 17:02:55 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left, duration: 33
+[Mon Sep 18 17:02:56 UYT 2017] Event: findBy, parameters: By.cssSelector: div.ext-el-mask-msg.x-mask-loading, duration: 1042
+[Mon Sep 18 17:02:56 UYT 2017] Event: findBy, parameters: By.id: cq-siteadmin-grid, duration: 25
+[Mon Sep 18 17:03:06 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row, duration: 10027
+[Mon Sep 18 17:03:06 UYT 2017] Event: findBy, parameters: By.id: cq-siteadmin-grid, duration: 33
+[Mon Sep 18 17:03:06 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left, duration: 20
+[Mon Sep 18 17:03:06 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid]] -> css selector: td.x-toolbar-left] -> By.cssSelector: button.x-btn-text.cq-siteadmin-create-page-icon, duration: 62
+[Mon Sep 18 17:03:07 UYT 2017] Event: click, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid]] -> css selector: td.x-toolbar-left]] -> css selector: button.x-btn-text.cq-siteadmin-create-page-icon], duration: 322
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 154
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 16
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 41
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 28
+[Mon Sep 18 17:03:07 UYT 2017] Event: changeValue, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..]] -> xpath: .//input[@type='text']] value: [] -> [], duration: 75
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 21
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 33
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 24
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 14
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 26
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 16
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 57
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 14
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 27
+[Mon Sep 18 17:03:07 UYT 2017] Event: changeValue, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..]] -> xpath: .//input[@type='text']] value: [] -> [], duration: 164
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 14
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 18
+[Mon Sep 18 17:03:07 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 15
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 17
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 17
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 17
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 11
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 13
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 23
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 29
+[Mon Sep 18 17:03:08 UYT 2017] Event: changeValue, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..]] -> xpath: .//input[@type='text']] value: [] -> [Automation], duration: 138
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 11
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/.., duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text'], duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 16
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 39
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 32
+[Mon Sep 18 17:03:08 UYT 2017] Event: changeValue, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..]] -> xpath: .//input[@type='text']] value: [] -> [], duration: 59
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 14
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 26
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 17
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 16
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 17
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 17
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 13
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 11
+[Mon Sep 18 17:03:08 UYT 2017] Event: changeValue, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..]] -> xpath: .//input[@type='text']] value: [] -> [], duration: 81
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 12
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 13
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 15
+[Mon Sep 18 17:03:08 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 14
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 91
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 14
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 12
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 26
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 26
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 13
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 15
+[Mon Sep 18 17:03:09 UYT 2017] Event: changeValue, parameters: [[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..]] -> xpath: .//input[@type='text']] value: [] -> [test-automation-page], duration: 199
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 16
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/.., duration: 16
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: [[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text'], duration: 13
+[Mon Sep 18 17:03:09 UYT 2017] Event: findBy, parameters: By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block'], duration: 24
+[Mon Sep 18 17:03:20 UYT 2017] Screenshot generated: C:\Users\Pablo\workspace\conexio-automation\.\target\report\test-report-20170918-170320.539-0000.png
+[Mon Sep 18 17:03:20 UYT 2017] Caught exception: no such element: Unable to locate element: {"method":"xpath","selector":".//div[contains(@class, 'template-title') and text() = "conexio-internal-project Content Page"]"}
+  (Session info: chrome=61.0.3163.91)
+  (Driver info: chromedriver=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41),platform=Windows NT 10.0.15063 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'DESKTOP-K1K3BIA', ip: '172.20.0.102', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41), userDataDir=C:\Users\Pablo\AppData\Local\Temp\scoped_dir7776_24153}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=61.0.3163.91, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: a39c0fe1cf92c75a1d9f6682b2e7f997
+*** Element info: {Using=xpath, value=.//div[contains(@class, 'template-title') and text() = "conexio-internal-project Content Page"]} org.openqa.selenium.NoSuchElementException: no such element: Unable to locate element: {"method":"xpath","selector":".//div[contains(@class, 'template-title') and text() = "conexio-internal-project Content Page"]"}
+  (Session info: chrome=61.0.3163.91)
+  (Driver info: chromedriver=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41),platform=Windows NT 10.0.15063 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 10.06 seconds
+For documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html
+Build info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'
+System info: host: 'DESKTOP-K1K3BIA', ip: '172.20.0.102', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41), userDataDir=C:\Users\Pablo\AppData\Local\Temp\scoped_dir7776_24153}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=61.0.3163.91, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]
+Session ID: a39c0fe1cf92c75a1d9f6682b2e7f997
+*** Element info: {Using=xpath, value=.//div[contains(@class, 'template-title') and text() = "conexio-internal-project Content Page"]}
+[Mon Sep 18 17:03:20 UYT 2017] Browser Log: [2017-09-18T17:02:54-0300] [SEVERE] http://localhost:4502/favicon.ico - Failed to load resource: the server responded with a status of 404 (Not Found)
+[Mon Sep 18 17:03:20 UYT 2017] Browser Log: [2017-09-18T17:02:54-0300] [SEVERE] http://localhost:4502/etc/tags/marketing.infinity.json?_dc=1505764974570 - Failed to load resource: the server responded with a status of 404 (Not Found)
+EOT
+Suite summary:
+Total number of tests: 1
+Number of failed tests: 1
+End of the report.

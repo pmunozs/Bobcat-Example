@@ -1,0 +1,736 @@
+{
+  "properties": [
+    {
+      "key": "publish.url",
+      "value": "localhost:4503"
+    },
+    {
+      "key": "author.login",
+      "value": "admin"
+    },
+    {
+      "key": "proxy.ip",
+      "value": "127.0.0.1"
+    },
+    {
+      "key": "author.ip",
+      "value": "http://localhost:4502"
+    },
+    {
+      "key": "publish.login",
+      "value": "admin"
+    },
+    {
+      "key": "publish.ip",
+      "value": "127.0.0.1:4503"
+    },
+    {
+      "key": "publish.password",
+      "value": "admin"
+    },
+    {
+      "key": "analytics.uri.prefix",
+      "value": "/b/ss"
+    },
+    {
+      "key": "webdriver.maximize",
+      "value": "true"
+    },
+    {
+      "key": "thread.count",
+      "value": "3"
+    },
+    {
+      "key": "webdriver.reusable",
+      "value": "false"
+    },
+    {
+      "key": "timeouts.minimal",
+      "value": "1"
+    },
+    {
+      "key": "proxy.enabled",
+      "value": "false"
+    },
+    {
+      "key": "component.locator.format",
+      "value": "div.%s"
+    },
+    {
+      "key": "webdriver.type",
+      "value": "chrome"
+    },
+    {
+      "key": "timeouts.big",
+      "value": "30"
+    },
+    {
+      "key": "bobcat.report.path",
+      "value": "./target/report"
+    },
+    {
+      "key": "proxy.port",
+      "value": "9000"
+    },
+    {
+      "key": "parsys.finder.offset",
+      "value": "6"
+    },
+    {
+      "key": "webdriver.chrome.driver",
+      "value": "C:/Users/Pablo/workspace/conexio-automation/chromedriver.exe"
+    },
+    {
+      "key": "analytics.call.timeout.ms",
+      "value": "30000"
+    },
+    {
+      "key": "webdriver.defaultTimeout",
+      "value": "10"
+    },
+    {
+      "key": "author.url",
+      "value": "http://localhost:4502"
+    },
+    {
+      "key": "timeouts.medium",
+      "value": "15"
+    },
+    {
+      "key": "bobcat.report.reporters",
+      "value": "html,json,simple,stdout"
+    },
+    {
+      "key": "page.title.timeout",
+      "value": "30"
+    },
+    {
+      "key": "parsys.locator.format",
+      "value": "div.parsys.%s"
+    },
+    {
+      "key": "timeouts.small",
+      "value": "5"
+    },
+    {
+      "key": "author.password",
+      "value": "admin"
+    },
+    {
+      "key": "webdriver.mobile",
+      "value": "false"
+    }
+  ],
+  "tests": [
+    {
+      "name": "ImageComponentTest - insertImage",
+      "result": "NOK ()",
+      "entries": [
+        {
+          "time": "Mon Sep 18 17:02:48 UYT 2017",
+          "type": "browserInfo",
+          "capabilities": {
+            "browserName": "chrome",
+            "version": "61.0.3163.91"
+          }
+        },
+        {
+          "time": "Mon Sep 18 17:02:49 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/libs/granite/core/content/login.html",
+          "duration": 1148
+        },
+        {
+          "time": "Mon Sep 18 17:02:54 UYT 2017",
+          "type": "event",
+          "event": "navigateTo",
+          "parameter": "http://localhost:4502/siteadmin#/content/conexio-internal-project/en/",
+          "duration": 4297
+        },
+        {
+          "time": "Mon Sep 18 17:02:55 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 33
+        },
+        {
+          "time": "Mon Sep 18 17:02:55 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 33
+        },
+        {
+          "time": "Mon Sep 18 17:02:56 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div.ext-el-mask-msg.x-mask-loading",
+          "duration": 1042
+        },
+        {
+          "time": "Mon Sep 18 17:02:56 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 25
+        },
+        {
+          "time": "Mon Sep 18 17:03:06 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid] -> By.cssSelector: div.x-grid3-row",
+          "duration": 10027
+        },
+        {
+          "time": "Mon Sep 18 17:03:06 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.id: cq-siteadmin-grid",
+          "duration": 33
+        },
+        {
+          "time": "Mon Sep 18 17:03:06 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid] -> By.cssSelector: td.x-toolbar-left",
+          "duration": 20
+        },
+        {
+          "time": "Mon Sep 18 17:03:06 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid]] -> css selector: td.x-toolbar-left] -> By.cssSelector: button.x-btn-text.cq-siteadmin-create-page-icon",
+          "duration": 62
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "click",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> id: cq-siteadmin-grid]] -> css selector: td.x-toolbar-left]] -> css selector: button.x-btn-text.cq-siteadmin-create-page-icon]",
+          "duration": 322
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 154
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 16
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 41
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 28
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "changeValue",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..]] -> xpath: .//input[@type='text']] value: [] -> []",
+          "duration": 75
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 21
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 33
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 24
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 14
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 26
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 16
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 57
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 14
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 27
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "changeValue",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..]] -> xpath: .//input[@type='text']] value: [] -> []",
+          "duration": 164
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 14
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 18
+        },
+        {
+          "time": "Mon Sep 18 17:03:07 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 15
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 17
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 17
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 17
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 11
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 13
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 23
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 29
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "changeValue",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..]] -> xpath: .//input[@type='text']] value: [] -> [Automation]",
+          "duration": 138
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 11
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='title']/..",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='title']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 16
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 39
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 32
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "changeValue",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..]] -> xpath: .//input[@type='text']] value: [] -> []",
+          "duration": 59
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 14
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 26
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 17
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 16
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 17
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 17
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 13
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 11
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "changeValue",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..]] -> xpath: .//input[@type='text']] value: [] -> []",
+          "duration": 81
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 13
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 15
+        },
+        {
+          "time": "Mon Sep 18 17:03:08 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 14
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 91
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 14
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 12
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 26
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 26
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 13
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 15
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "changeValue",
+          "parameter": "[[[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..]] -> xpath: .//input[@type='text']] value: [] -> [test-automation-page]",
+          "duration": 199
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 16
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']] -> By.xpath: .//input[@name='label']/..",
+          "duration": 16
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "[[[[ChromeDriver: chrome on XP (a39c0fe1cf92c75a1d9f6682b2e7f997)] -> css selector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']]] -> xpath: .//input[@name='label']/..] -> By.xpath: .//input[@type='text']",
+          "duration": 13
+        },
+        {
+          "time": "Mon Sep 18 17:03:09 UYT 2017",
+          "type": "event",
+          "event": "findBy",
+          "parameter": "By.cssSelector: div[id^='cq-createdialog'][style*='visibility: visible'][style*='display: block']",
+          "duration": 24
+        },
+        {
+          "time": "Mon Sep 18 17:03:20 UYT 2017",
+          "type": "screenshot",
+          "path": "C:\\Users\\Pablo\\workspace\\conexio-automation\\.\\target\\report\\test-report-20170918-170320.539-0000.png"
+        },
+        {
+          "time": "Mon Sep 18 17:03:20 UYT 2017",
+          "type": "exception",
+          "message": "no such element: Unable to locate element: {\"method\":\"xpath\",\"selector\":\".//div[contains(@class, 'template-title') and text() = \"conexio-internal-project Content Page\"]\"}\n  (Session info: chrome=61.0.3163.91)\n  (Driver info: chromedriver=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41),platform=Windows NT 10.0.15063 x86_64) (WARNING: The server did not provide any stacktrace information)\nCommand duration or timeout: 10.06 seconds\nFor documentation on this error, please visit: http://seleniumhq.org/exceptions/no_such_element.html\nBuild info: version: '2.53.1', revision: 'a36b8b1cd5757287168e54b817830adce9b0158d', time: '2016-06-30 19:26:09'\nSystem info: host: 'DESKTOP-K1K3BIA', ip: '172.20.0.102', os.name: 'Windows 10', os.arch: 'amd64', os.version: '10.0', java.version: '1.8.0_131'\nDriver info: org.openqa.selenium.chrome.ChromeDriver\nCapabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, networkConnectionEnabled=false, chrome={chromedriverVersion=2.30.477700 (0057494ad8732195794a7b32078424f92a5fce41), userDataDir=C:\\Users\\Pablo\\AppData\\Local\\Temp\\scoped_dir7776_24153}, takesHeapSnapshot=true, pageLoadStrategy=normal, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=61.0.3163.91, platform=XP, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true, unexpectedAlertBehaviour=}]\nSession ID: a39c0fe1cf92c75a1d9f6682b2e7f997\n*** Element info: {Using=xpath, value=.//div[contains(@class, 'template-title') and text() = \"conexio-internal-project Content Page\"]}",
+          "stack": [
+            "sun.reflect.NativeConstructorAccessorImpl.newInstance0",
+            "sun.reflect.NativeConstructorAccessorImpl.newInstance",
+            "sun.reflect.DelegatingConstructorAccessorImpl.newInstance",
+            "java.lang.reflect.Constructor.newInstance",
+            "org.openqa.selenium.remote.ErrorHandler.createThrowable",
+            "org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed",
+            "org.openqa.selenium.remote.RemoteWebDriver.execute",
+            "org.openqa.selenium.remote.RemoteWebElement.execute",
+            "org.openqa.selenium.remote.RemoteWebElement.findElement",
+            "org.openqa.selenium.remote.RemoteWebElement.findElementByXPath",
+            "org.openqa.selenium.By$ByXPath.findElement",
+            "org.openqa.selenium.remote.RemoteWebElement.findElement",
+            "sun.reflect.GeneratedMethodAccessor8.invoke",
+            "sun.reflect.DelegatingMethodAccessorImpl.invoke",
+            "java.lang.reflect.Method.invoke",
+            "org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement$1.invoke",
+            "com.sun.proxy.$Proxy32.findElement",
+            "org.openqa.selenium.support.events.EventFiringWebDriver$EventFiringWebElement.findElement",
+            "sun.reflect.GeneratedMethodAccessor8.invoke",
+            "sun.reflect.DelegatingMethodAccessorImpl.invoke",
+            "java.lang.reflect.Method.invoke",
+            "org.openqa.selenium.support.pagefactory.internal.LocatingElementHandler.invoke",
+            "com.sun.proxy.$Proxy33.findElement",
+            "com.cognifide.qa.bb.aem.ui.wcm.windows.CreatePageWindow.selectTemplate",
+            "com.cognifide.qa.bb.frame.FrameAspect.switchFrameAndProceed",
+            "com.cognifide.qa.bb.frame.FrameAspect.invoke",
+            "com.cognifide.qa.bb.aem.ui.wcm.windows.CreatePageWindow.createPage",
+            "com.cognifide.qa.bb.frame.FrameAspect.switchFrameAndProceed",
+            "com.cognifide.qa.bb.frame.FrameAspect.invoke",
+            "com.cognifide.qa.bb.aem.ui.wcm.SiteAdminPage.createNewPage",
+            "com.cognifide.qa.bb.frame.FrameAspect.switchFrameAndProceed",
+            "com.cognifide.qa.bb.frame.FrameAspect.invoke",
+            "com.conexio.automation.homepage.ImageComponentTest.createPageIfDoesntExists",
+            "com.conexio.automation.homepage.ImageComponentTest.setup",
+            "sun.reflect.NativeMethodAccessorImpl.invoke0",
+            "sun.reflect.NativeMethodAccessorImpl.invoke",
+            "sun.reflect.DelegatingMethodAccessorImpl.invoke",
+            "java.lang.reflect.Method.invoke",
+            "org.junit.runners.model.FrameworkMethod$1.runReflectiveCall",
+            "org.junit.internal.runners.model.ReflectiveCallable.run",
+            "org.junit.runners.model.FrameworkMethod.invokeExplosively",
+            "org.junit.internal.runners.statements.RunBefores.evaluate",
+            "org.junit.internal.runners.statements.RunAfters.evaluate",
+            "org.junit.rules.TestWatcher$1.evaluate",
+            "org.junit.rules.ExternalResource$1.evaluate",
+            "org.junit.rules.RunRules.evaluate",
+            "com.cognifide.qa.bb.junit.TestRunner.runChild",
+            "com.cognifide.qa.bb.junit.TestRunner.runChild",
+            "org.junit.runners.ParentRunner$3.run",
+            "org.junit.runners.ParentRunner$1.schedule",
+            "org.junit.runners.ParentRunner.runChildren",
+            "org.junit.runners.ParentRunner.access$000",
+            "org.junit.runners.ParentRunner$2.evaluate",
+            "org.junit.runners.ParentRunner.run",
+            "com.cognifide.qa.bb.junit.TestRunner.run",
+            "org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run",
+            "org.eclipse.jdt.internal.junit.runner.TestExecution.run",
+            "org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests",
+            "org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests",
+            "org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run",
+            "org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main"
+          ]
+        },
+        {
+          "time": "Mon Sep 18 17:03:20 UYT 2017",
+          "type": "browser log",
+          "message": "[2017-09-18T17:02:54-0300] [SEVERE] http://localhost:4502/favicon.ico - Failed to load resource: the server responded with a status of 404 (Not Found)"
+        },
+        {
+          "time": "Mon Sep 18 17:03:20 UYT 2017",
+          "type": "browser log",
+          "message": "[2017-09-18T17:02:54-0300] [SEVERE] http://localhost:4502/etc/tags/marketing.infinity.json?_dc=1505764974570 - Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ]
+    }
+  ],
+  "total": 1,
+  "failed": 1
+}
